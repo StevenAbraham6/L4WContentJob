@@ -4,6 +4,8 @@
 Ciscospark  = require('ciscospark/env');
 CiscoSpark = require('ciscospark')
 const Airtable = require('airtable')
+var moment = require('moment-timezone');
+
 
 
 
@@ -182,8 +184,9 @@ exports.handler = function(event, context, callback){
     // use For - - - - bluebird promise. map series // make async funciton send message .. prefix sendmessage with await  // 
     records.forEach(function(record){
 
-      var launchDate = new Date(record.get("DAY0_DATE"));
-      var now = new Date();
+      var launchDate = moment.tz(record.get("DAY0_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));
+
+      var now = moment().tz(record.get("TIMEZONE"))
 
       //check if pending and then date
       if(record.get("DAY0_STATUS")=="PENDING")
@@ -192,52 +195,52 @@ exports.handler = function(event, context, callback){
 
 
       //check if pending and then date
-      launchDate = new Date(record.get("DAY1_DATE"));  
+      launchDate = moment.tz(record.get("DAY1_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY1_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY1_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY1")
 
-      launchDate = new Date(record.get("DAY2_DATE"));    
+      launchDate = moment.tz(record.get("DAY2_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY2_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY2_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY2")
       
-      launchDate = new Date(record.get("DAY3_DATE"));    
+      launchDate = moment.tz(record.get("DAY3_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY3_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY3_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY3")  
           
-      launchDate = new Date(record.get("DAY4_DATE"));    
+      launchDate = moment.tz(record.get("DAY4_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY4_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY4_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY4")
       
-      launchDate = new Date(record.get("DAY5_DATE"));    
+      launchDate = moment.tz(record.get("DAY5_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY5_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY5_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY5")  
           
-      launchDate = new Date(record.get("DAY6_DATE"));    
+      launchDate = moment.tz(record.get("DAY6_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY6_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY6_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY6")
       
-      launchDate = new Date(record.get("DAY7_DATE"));    
+      launchDate = moment.tz(record.get("DAY7_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY7_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY7_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY7")  
           
-      launchDate = new Date(record.get("DAY8_DATE"));    
+      launchDate = moment.tz(record.get("DAY8_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY8_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY8_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY8")
       
-      launchDate = new Date(record.get("DAY9_DATE"));    
+      launchDate = moment.tz(record.get("DAY9_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY9_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY9_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY9") 
           
-      launchDate = new Date(record.get("DAY10_DATE"));    
+      launchDate = moment.tz(record.get("DAY10_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
       if(record.get("DAY10_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY10_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY10")     

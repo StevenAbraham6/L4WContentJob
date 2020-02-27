@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "airtable": "^0.8.1",
-    "ciscospark": "^1.59.0"
+    "ciscospark": "^1.59.0",
+    "moment-timezone": "^0.5.28"
   }
 }
