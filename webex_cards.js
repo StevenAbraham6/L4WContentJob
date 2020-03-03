@@ -12,7 +12,7 @@ var moment = require('moment-timezone');
 //send webex teams message
 let sendMessage = function(attachments, email, recordId, day){
   
-  process.env.CISCOSPARK_ACCESS_TOKEN = 'MmM2MjA2OTQtMTFhNC00ZDlhLWE2YmItOWZlZjc5OTNkMmIwZTJiZmUxMGMtM2U2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f';
+  process.env.CISCOSPARK_ACCESS_TOKEN = 'NDNmZjcwZWYtZDZkMi00OGJjLWIzY2QtYjNiYjc5YjdlMjcxMjE2ZTNlNDEtMDU2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f';
     const spark1 = new CiscoSpark({
       credentials: process.env.CISCOSPARK_ACCESS_TOKEN
   });
@@ -159,7 +159,7 @@ exports.handler = function(event, context, callback){
   const table = base("CONTENT")
 
     
-  process.env.CISCOSPARK_ACCESS_TOKEN = 'MmM2MjA2OTQtMTFhNC00ZDlhLWE2YmItOWZlZjc5OTNkMmIwZTJiZmUxMGMtM2U2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f';
+  process.env.CISCOSPARK_ACCESS_TOKEN = 'NDNmZjcwZWYtZDZkMi00OGJjLWIzY2QtYjNiYjc5YjdlMjcxMjE2ZTNlNDEtMDU2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f';
     const spark1 = new CiscoSpark({
       credentials: process.env.CISCOSPARK_ACCESS_TOKEN
   });
@@ -192,7 +192,7 @@ exports.handler = function(event, context, callback){
       if(record.get("DAY0_STATUS")=="PENDING")
         if(launchDate<now)
           sendMessage(record.get("DAY0_CONTENT_JSON"), record.get("SE_EMAIL"), record.getId(), "DAY0")
-
+        
 
       //check if pending and then date
       launchDate = moment.tz(record.get("DAY1_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));  
