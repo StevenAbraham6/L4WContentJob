@@ -8,7 +8,6 @@ var moment = require('moment-timezone');
 
 
 
-
 //send webex teams message
 let sendMessage = function(attachments, email, recordId, day){
   
@@ -26,8 +25,13 @@ let sendMessage = function(attachments, email, recordId, day){
       updateStatus(recordId,"COMPLETE",day)
     })
     .catch((error) => {
-      console.error(error);
-      updateStatus(recordId,"FAIL",day)
+      console.log(error.name)
+      if(error.name=="NotFound"){
+        updateStatus(recordId,"FAIL",day)
+      }
+      else{
+        updateStatus(recordId,"PENDING",day)
+      }
     });  
 }
 
