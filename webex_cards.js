@@ -11,6 +11,7 @@ var moment = require('moment-timezone');
 //send webex teams message
 let sendMessage = function(attachments, email, recordId, day){
   
+  console.log(email)
   process.env.CISCOSPARK_ACCESS_TOKEN = 'NDNmZjcwZWYtZDZkMi00OGJjLWIzY2QtYjNiYjc5YjdlMjcxMjE2ZTNlNDEtMDU2_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f';
     const spark1 = new CiscoSpark({
       credentials: process.env.CISCOSPARK_ACCESS_TOKEN
@@ -22,6 +23,7 @@ let sendMessage = function(attachments, email, recordId, day){
     toPersonEmail: email,
     attachments: [{"contentType": "application/vnd.microsoft.card.adaptive","content": JSON.parse(attachments)}]
     }).then(function(response){
+      console.log("success")
       updateStatus(recordId,"COMPLETE",day)
     })
     .catch((error) => {
@@ -152,8 +154,9 @@ let updateStatus = function(recordId,status,day){
 }
 
 
+
 /* Handler function starts here */
-exports.handler = function(event, context, callback){
+ exports.handler = function(event, context, callback){
 
   Airtable.configure({
     apiKey: "keyoPw1vi0AN2TbIP"
@@ -185,8 +188,7 @@ exports.handler = function(event, context, callback){
     }
 
     //process the `records` array
-    // use For - - - - bluebird promise. map series // make async funciton send message .. prefix sendmessage with await  // 
-    records.forEach(function(record){
+    records.forEach(function(record, index){
 
       var launchDate = moment.tz(record.get("DAY0_DATE"),"MMMM Do YYYY, h:mm:ss a",record.get("TIMEZONE"));
 
