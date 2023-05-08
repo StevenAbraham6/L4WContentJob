@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "airtable": "^0.8.1",
+    "airtable": "^0.11.6",
     "ciscospark": "^1.59.0"
   }
 }
